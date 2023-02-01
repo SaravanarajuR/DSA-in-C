@@ -7,9 +7,9 @@ struct node {
 };
 struct node *head = 0, *newnode, *tail = 0, *temp, *del;
 
-void find(struct node *head, int k) {
-  temp = head;
-  for (int i = 1; i < k; i++) {
+void find(struct node *start, int k, int i) {
+  temp = start;
+  for (int i; i < k; i++) {
     temp = temp->next;
   }
   del = temp->next;
@@ -19,7 +19,7 @@ void find(struct node *head, int k) {
     printf("%d", temp->data);
     return;
   }
-  find(temp, k);
+  find(temp, k, 1);
 }
 
 void main() {
@@ -42,5 +42,5 @@ void main() {
   }
   printf("Enter the k value");
   scanf("%d", &k);
-  find(head, k);
+  find(head, 3, 2);
 }
