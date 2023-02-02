@@ -42,5 +42,5 @@ void main() {
   }
   printf("Enter the k value");
   scanf("%d", &k);
-  find(head, 3, 2);
+  find(head, k, 2);
 }
