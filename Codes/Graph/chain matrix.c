@@ -3,13 +3,14 @@ int n=100;
    int minMul[10][10];
 int MatrixChainMultuplication(int arr[], int n) {
    int j, q;
-   for (int i = 1; i < n; i++)
+   for (int i = 1; i < n; i++){
       minMul[i][i] = 0;
+}
    for (int L = 2; L < n; L++) {
-      for (int i = 1; i < n - L + 1; i++) {
+      for (int i = 1; i <= n - L; i++) {
          j = i + L - 1;
          minMul[i][j] = 99999999;
-         for (int k = i; k <= j - 1; k++) {
+         for (int k = i; k <j; k++) {
             q = minMul[i][k] + minMul[k + 1][j] + arr[i - 1] * arr[k] * arr[j];
             printf("A[%d][%d]=%d\n",i,j,q);
             if (q < minMul[i][j])
