@@ -1,46 +1,47 @@
 #include <stdio.h>
-int n=100;
-   int minMul[10][10];
-int MatrixChainMultuplication(int arr[], int n) {
-   int j, q;
-   for (int i = 1; i < n; i++){
-      minMul[i][i] = 0;
-}
-   for (int L = 2; L < n; L++) {
-      for (int i = 1; i <= n - L; i++) {
-         j = i + L - 1;
-         minMul[i][j] = 99999999;
-         for (int k = i; k <j; k++) {
-            q = minMul[i][k] + minMul[k + 1][j] + arr[i - 1] * arr[k] * arr[j];
-            printf("A[%d][%d]=%d\n",i,j,q);
-            if (q < minMul[i][j])
-            minMul[i][j] = q;
-         }
-        printf("the minimum value is %d\n",minMul[i][j]);
+#include <stdlib.h>
+int m[50][50], s[50][50];
 
-      }
-       for(int i=1;i<n;i++){
-      for(int j=1;j<n;j++){
-       printf("%d\t",minMul[i][j]);
-       }
-       printf("\n");
-  }
-   printf("\n");
-  
-   }
-   return minMul[1][n - 1];
-}
-int main(){
-   int arr[10],size;
-   printf("enter the size :");
-   scanf("%d",&size);
-   for(int i=0;i<size;i++){
-       printf("p%d :",i);
-       scanf("%d",&arr[i]);
-   }
-   
-  // int size = sizeof(arr) / sizeof(arr[0]);
-   printf("Minimum number of multiplications required for the matrices multiplication is %d ",    MatrixChainMultuplication(arr, size));
-   getchar();
-   return 0;
+void main() {
+    int n, i, j, u, v, z, t, q, k, l;
+    printf("Enter the No. of Chain Matrix: ");
+    scanf("%d", &n);
+    int p[n];
+    printf("Enter the Matrix: \n");
+    for(i=0; i<=n; i++) {
+        printf("p[%d]: ", i);
+        scanf("%d", &p[i]);
+    }
+    for(i=1; i<=n; i++) {
+        m[i][i] =0;
+    }
+    for(l =2; l<=n; l++) {
+        for(i=1; i<=n-l+1; i++) {
+            j = i+l-1;
+            m[i][j] = 999;
+            for(k=i; k<=j-1; k++) {
+                q = m[i][k] + m[k+1][j] + ((p[i-1])*(p[k])*(p[j]));
+                printf("For k = %d, value of m[%d][%d] = %d\n", k, i, j, q);
+                if(q<m[i][j]) {
+                    m[i][j] = q;
+                    s[i][j] = k;
+                }
+            }
+            printf("The Cost Matrix is:\n");
+            for(u=1; u<=n; u++) {
+                for(v = 1; v<=n; v++) {
+                    printf("%d\t", m[u][v]);
+                }
+               printf("\n");
+            }
+            printf("The Sequence Matrix is:\n");
+            for(t=1; t<=n; t++) {
+                for(z = 1; z<=n; z++) {
+                    printf("%d\t", s[t][z]);
+                }
+                printf("\n");
+            }
+        }
+    }
+    printf("\nThe Cost of the Matrix Multiplication is: %d\n", m[1][n]);
 }
