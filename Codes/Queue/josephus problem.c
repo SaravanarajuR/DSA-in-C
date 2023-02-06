@@ -4,7 +4,7 @@ struct node
 {
 	int playerid;
 	struct node *next;
-}*front=0,*newnode,*temp;
+}*front=0,*newnode,*temp,*del;
 void main()
 {
 	int i,j,n,k,count=0;
