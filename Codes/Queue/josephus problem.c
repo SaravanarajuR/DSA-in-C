@@ -4,7 +4,7 @@ struct node
 {
 	int playerid;
 	struct node *next;
-}*front=0,*newnode,*temp,*del;
+}*front=0,*newnode,*temp;
 void main()
 {
 	int i,j,n,k,count=0;
@@ -33,9 +33,7 @@ void main()
 			temp=temp->next;
 		}
 		printf("\nPlayer no. %d Eliminated in round %d",temp->next->playerid,count);
-		del=temp->next;
 		temp->next=temp->next->next;
-		free(del);
 	}
 	printf("\nWinner is %d",temp->playerid);
 }
