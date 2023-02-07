@@ -1,17 +1,19 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#define MAX_SIZE 100
+#define MAX 100
 
-int stack[MAX_SIZE];
+int stack[MAX];
 int top = -1;
 
 void push(int item) {
-    stack[++top] = item;
+    top++;
+    stack[top] = item;
 }
 
 int pop() {
-    return stack[top--];
+    top--;
+    return stack[top];
 }
 
 int eval(int op1, int op2, char operator) {
@@ -43,7 +45,7 @@ int evaluatePostfix(char postfix[]) {
 }
 
 int main() {
-    char postfix[MAX_SIZE];
+    char postfix[MAX];
     printf("Enter a postfix expression: ");
     scanf("%s", postfix);
     printf("Result: %d\n", evaluatePostfix(postfix));
