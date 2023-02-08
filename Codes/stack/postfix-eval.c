@@ -22,16 +22,16 @@ int eval(int op1, int op2, char operator) {
         case '-': return op2 - op1;
         case '*': return op2 * op1;
         case '/': return op2 / op1;
-        case '^': return pow(op2, op1);
+        case '^': return op2 * op1;
     }
     return 0;
 }
 
-int evaluatePostfix(char postfix[]) {
+int evaluatePostfix(char postfix[],int n) {
     int i, op1, op2;
     char ch;
 
-    for (i = 0; i < strlen(postfix); i++) {
+    for (i = 0; i < n; i++) {
         ch = postfix[i];
         if (isdigit(ch)) {
             push(ch - '0');
@@ -45,9 +45,14 @@ int evaluatePostfix(char postfix[]) {
 }
 
 int main() {
+    int n;
     char postfix[MAX];
-    printf("Enter a postfix expression: ");
-    scanf("%s", postfix);
-    printf("Result: %d\n", evaluatePostfix(postfix));
+    printf("Enter the length of postfix expression: ");
+    scanf("%d",&n);
+    printf("Enter the postfix expression: ");
+    for(int i=0;i<n;i++){
+        scanf("%c", postfix[i]);
+    }
+    printf("Result: %d\n", evaluatePostfix(postfix,n));
     return 0;
 }
